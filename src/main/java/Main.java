@@ -1,3 +1,5 @@
+// Main.java
+
 import org.example.Book;
 import org.example.Database;
 
@@ -43,6 +45,7 @@ public class Main {
                         librarianFrame.setLayout(new FlowLayout());
                         JPanel panel=new JPanel();
                         panel.setLayout(new GridLayout(5,5));
+
                         JButton BookCollection=new JButton("Book Collection");
                         BookCollection.addActionListener(new ActionListener() {
                             @Override
@@ -207,8 +210,10 @@ public class Main {
 
                                 JLabel bookIdLabel=new JLabel("Book Id:");
                                 JTextField bookIdField=new JTextField();
+                                bookIdField.addKeyListener(new IntegerInputKeyListener());
                                 JLabel userIdLabel=new JLabel("User Id: ");
                                 JTextField userIdField=new JTextField();
+                                userIdField.addKeyListener(new IntegerInputKeyListener());
                                 JButton submitButton=new JButton("Submit");
                                 submitButton.addActionListener(new ActionListener() {
                                     @Override
@@ -370,6 +375,7 @@ public class Main {
 
                                 JLabel idLabel=new JLabel("By Id: ");
                                 JTextField idField=new JTextField();
+                                idField.addKeyListener(new IntegerInputKeyListener());
                                 JButton searchIdButton=new JButton("Search By Id");
 
                                 searchIdButton.addActionListener(new ActionListener() {
@@ -480,6 +486,7 @@ public class Main {
 
                 JLabel usernameLabel = new JLabel("Id:");
                 JTextField usernameField = new JTextField(10); // Adjust size as needed
+                usernameField.addKeyListener(new IntegerInputKeyListener());
                 JButton loginButton = new JButton("Login");
                 panel.add(usernameLabel);
                 panel.add(usernameField);
@@ -511,6 +518,7 @@ public class Main {
 
                                     JLabel borrowLabel=new JLabel("Enter id of the book u wanna borrow");
                                     JTextField borrowId=new JTextField(10);
+                                    borrowId.addKeyListener(new IntegerInputKeyListener());
                                     JButton borrowButton=new JButton("Borrow");
 
 
@@ -624,5 +632,26 @@ public class Main {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+    }
+}
+
+
+class IntegerInputKeyListener implements KeyListener {
+    @Override
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if (!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE)) {
+            e.consume(); // Consume the event to prevent input
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // No action needed for keyPressed
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // No action needed for keyReleased
     }
 }
